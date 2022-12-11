@@ -7,6 +7,9 @@ COPY LICENSE README.md entrypoint.sh /
 # Install Python 3 on the Docker image
 RUN apk add --no-cache python3
 
+# Install Pip 3 on the Docker image
+RUN apk add --no-cache py3-pip
+
 # Install Git on the Docker image
 RUN apk add git
 

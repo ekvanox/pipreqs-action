@@ -13,11 +13,6 @@ inputs:
     required: true
     default: "requirements.txt"
 
-  PROJECT_NAME:
-    description: "Name of the project to include in the commit"
-    required: true
-    default: ""
-
   COMMIT_MESSAGE:
     description: "Name of the project to include in the commit"
     required: true
