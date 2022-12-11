@@ -44,4 +44,4 @@ else
 
   # Push the new commit to the remote Git repository, using the origin remote and the HEAD reference.
   git push -u origin HEAD
-  
+fi
