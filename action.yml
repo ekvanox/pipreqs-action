@@ -1,5 +1,5 @@
-name: "Automatic requirements.txt for Python Projects"
-description: "This action will automatically create the requirements.txt file for a python project using the pipreqs tool."
+name: "Automatic requirements.txt with Python 3.10"
+description: "This action will automatically create the requirements.txt file for a python project using the pipreqs tool. Forked from ryan-rozario/pipreqs-action to use Python 3.10"
 author: "Erik Heimdal"
 
 inputs:
