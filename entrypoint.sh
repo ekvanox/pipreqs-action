@@ -9,6 +9,9 @@ pipreqs --force --savepath $INPUT_REQUIREMENT_PATH $INPUT_PROJECT_PATH
 # This is used to prevent the script from continuing if any errors occur during execution.
 set -e
 
+# Add an exception for this directory
+git config --global --add safe.directory /github/workspace
+
 # Set the Git user name and email address to the GITHUB_ACTOR environment variable, which specifies the user or organization
 # that triggered the workflow. This is used to configure the Git credentials for the user who is running the workflow.
 git config --global user.name "${GITHUB_ACTOR}"
