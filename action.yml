@@ -1,28 +1,43 @@
+# The name of the action
 name: "Automatic requirements.txt with Python 3.10"
+
+# A description of the action
 description: "Automatically update the requirements.txt file using the pipreqs. Forked from ryan-rozario/pipreqs-action to use Python 3.10"
+
+# The author of the action
 author: "Erik Heimdal"
 
+# The inputs required by the action
 inputs:
+  # The path to the project for which the requirements.txt file will be updated
   PROJECT_PATH:
     description: "Gives the path of the project"
     required: true
     default: "."
 
+  # The folder where the updated requirements.txt file should be saved
   REQUIREMENT_PATH:
     description: "Folder where requirements.txt has to be saved in"
     required: true
     default: "requirements.txt"
 
+  # The commit message to use when committing the updated file to the project's repository
   COMMIT_MESSAGE:
     description: "Name of the project to include in the commit"
     required: true
     default: "Updated requirements file"
 
-
+# The runtime environment in which the action will be run
 runs:
   using: "docker"
+
+  # The Dockerfile to use to build the container for running the action
   image: "Dockerfile"
 
+# The branding information for the action
 branding:
+  # The icon to use for the action
   icon: 'code'
+
+  # The color to use for the action
   color: 'yellow'
