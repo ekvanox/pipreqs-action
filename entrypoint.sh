@@ -18,8 +18,26 @@ git config --global --add safe.directory /github/workspace
 git config --global user.name "${GITHUB_ACTOR}"
 git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-# Check if there are any changes to the requirements.txt file
-if [[ `git status --porcelain --untracked-files=no` ]]; then
+# Temporarily disable the "errexit" option, which causes the script to exit if any commands return a non-zero exit code.
+# This is necessary because the `git diff` command returns a non-zero exit code when there are changes to be committed.
+set +e
+
+# Check if there are any changes to be committed to the local Git repository.
+# The `git diff --quiet` command returns a non-zero exit code if there are changes, and zero if there are no changes.
+git diff --quiet
+
+# Store the exit code of the "git diff" command in a variable named "changes".
+changes=$?
+
+# Re-enable the "errexit" option to prevent the script from continuing if any errors occur.
+set -e
+
+# Check if the "changes" variable is equal to 0. If it is, this indicates that there are no changes to the requirements.txt file.
+if [ "$changes" -eq 0 ]; then
+  # If there are no changes, print a message and exit the script
+  echo "No changes to requirements.txt"
+  exit 0
+else
   # Stage, commit, and push the changes to the requirements.txt file to the remote Git repository. The INPUT_COMMIT_MESSAGE
   # input parameter is used to specify the commit message for the changes.
   # Stage the changes to the requirements.txt file
@@ -31,8 +49,4 @@ if [[ `git status --porcelain --untracked-files=no` ]]; then
 
   # Push the new commit to the remote Git repository, using the origin remote and the HEAD reference.
   git push -u origin HEAD
-else
-  # If there are no changes, print a message and exit the script
-  echo "No changes to requirements.txt"
-  exit 0
 fi
